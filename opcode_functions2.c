@@ -18,14 +18,14 @@ void op_div(stack_t **stack, unsigned int counter)
 
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't div, stack too short\n", counter);
+		fprintf(stderr, "L%u: can't div, stack too short\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*stack)->n == 0)
 	{
-		dprintf(2, "L%u: division by zero\n", counter);
+		fprintf(stderr, "L%u: division by zero\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
@@ -53,7 +53,7 @@ void op_mul(stack_t **stack, unsigned int counter)
 
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't mul, stack too short\n", counter);
+		fprintf(stderr, "L%u: can't mul, stack too short\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
@@ -81,14 +81,14 @@ void op_mod(stack_t **stack, unsigned int counter)
 
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't mod, stack too short\n", counter);
+		fprintf(stderr, "L%u: can't mod, stack too short\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*stack)->n == 0)
 	{
-		dprintf(2, "L%u: division by zero\n", counter);
+		fprintf(stderr, "L%u: division by zero\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
@@ -108,14 +108,14 @@ void op_pchar(stack_t **stack, unsigned int counter)
 {
 	if (stack  == NULL || *stack == NULL)
 	{
-		dprintf(2, "L%u: can't pchar, stack empty\n", counter);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*stack)->n < 0 || (*stack)->n >= 128)
 	{
-		dprintf(2, "L%u: can't pchar, value out of range\n", counter);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}

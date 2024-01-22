@@ -71,9 +71,9 @@ char *_strtokk(char *s, char *delim)
 			s = s + b;
 			return (s);
 		}
-		else if (_sch(delim, s[a]) == 0 && s(delim, s[a + 1]) == 0)
+		else if (_sch(delim, s[a]) == 0 && _sch(delim, s[a + 1]) == 0)
 			a++;
-		else if (_sch(delim, s[a]) == 0 && s(delim, s[a + 1]) == 1)
+		else if (_sch(delim, s[a]) == 0 && _sch(delim, s[a + 1]) == 1)
 		{
 			stok = s + a + 1;
 			*stok = '\0';

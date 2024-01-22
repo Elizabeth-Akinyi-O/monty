@@ -1,12 +1,14 @@
 #include "monty.h"
 
+global_t glob_var;
+
 /**
  * free_glob_var - frees global variables
  *
  */
 void free_glob_var(void)
 {
-	free_dlist_int(glob_var.head);
+	free_nodes(glob_var.head);
 	free(glob_var.buff);
 	fclose(glob_var.fd);
 }
@@ -39,15 +41,15 @@ FILE *check_file(int argc, char *argv[])
 
 	if (argc == 1 || argc > 2)
 	{
-		dprintf(2, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	fd = fopen(argv(1), "r");
+	fd = fopen(argv[1], "r");
 
 	if (fd == NULL)
 	{
-		dprintf(2, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
@@ -77,11 +79,11 @@ int main(int argc, char *argv[])
 		token[0] = _strtokk(glob_var.buff, " \t\n");
 		if (token[0] && token[0][0] != '#')
 		{
-			f = exec_opcode(line[0]);
+			f = exec_opcode(token[0]);
 			if (!f)
 			{
-				dprintf(2, "L%u: ", glob_var.l_cont);
-				dprintf(2, "unknown instruction %s\n", token[0]);
+				fprintf(stderr, "L%u: ", glob_var.l_cont);
+				fprintf(stderr, "unknown instruction %s\n", token[0]);
 				free_glob_var();
 				exit(EXIT_FAILURE);
 			}

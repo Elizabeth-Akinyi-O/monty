@@ -1,4 +1,4 @@
-#include "monty'h"
+#include "monty.h"
 
 /**
  * add_node_beg - adds a node at the beginning of a doubly linked list
@@ -16,9 +16,9 @@ stack_t *add_node_beg(stack_t **head, const int n)
 	temp = malloc(sizeof(stack_t));
 	if (!temp)
 	{
-		dprintf(2, "Error: malloc failed\n");
-		free_glob_var;
-		eixt(EXIT_FAILURE);
+		fprintf(stderr, "Error: malloc failed\n");
+		free_glob_var();
+		exit(EXIT_FAILURE);
 	}
 	temp->n = n;
 
@@ -52,7 +52,7 @@ stack_t *add_node_end(stack_t **head, const int n)
 	temp = malloc(sizeof(stack_t));
 	if (!temp)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}

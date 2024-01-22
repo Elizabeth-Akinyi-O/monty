@@ -25,7 +25,7 @@ void (*exec_opcode(char *opc))(stack_t **stack, unsigned int line_number)
 		{"pchar", op_pchar},
 		{"pstr", op_pstr},
 		{"rotl", op_rotl},
-		{"totr" op_rotr},
+		{"rotr", op_rotr},
 		{NULL, NULL}
 	};
 	int a;

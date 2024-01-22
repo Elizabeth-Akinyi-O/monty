@@ -12,8 +12,8 @@ void op_push(stack_t **stack, unsigned int counter)
 
 	if (!glob_var.arg)
 	{
-		dprintf(2, "L%u: ", counter);
-		dprintf(2, "usage: push integer\n");
+		fprintf(stderr, "L%u: ", counter);
+		fprintf(stderr, "usage: push integer\n");
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
@@ -22,8 +22,8 @@ void op_push(stack_t **stack, unsigned int counter)
 	{
 		if (!isdigit(glob_var.arg[a]) && glob_var.arg[a] != '-')
 		{
-			dprintf(2, "L%u: ", counter);
-			dprintf(2, "usage: push integer\n");
+			fprintf(stderr, "L%u: ", counter);
+			fprintf(stderr, "usage: push integer\n");
 			free_glob_var();
 			exit(EXIT_FAILURE);
 		}
@@ -46,15 +46,15 @@ void op_push(stack_t **stack, unsigned int counter)
  */
 void op_pall(stack_t **stack, unsigned int counter)
 {
-	stack_t **h;
+	stack_t *aux;
 	(void)counter;
 
-	h = *stack;
+	aux = *stack;
 
-	while (h)
+	while (aux)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
+		printf("%d\n", aux->n);
+		aux = aux->next;
 	}
 }
 
@@ -70,8 +70,8 @@ void op_pint(stack_t **stack, unsigned int counter)
 
 	if (*stack == NULL)
 	{
-		dprintf(2, "L%u: ", counter);
-		dprintf(2, "can't pint, stack empty\n");
+		fprintf(stderr, "L%u: ", counter);
+		fprintf(stderr, "can't pint, stack empty\n");
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
@@ -87,17 +87,17 @@ void op_pint(stack_t **stack, unsigned int counter)
  */
 void op_pop(stack_t **stack, unsigned int counter)
 {
-	stack **h;
+	stack_t *aux;
 
 	if (stack == NULL || *stack == NULL)
 	{
-		dprintf(2, "L%u: can't pop an empty stack\n", counter);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
-	h = *stack;
+	aux = *stack;
 	*stack = (*stack)->next;
-	free(h);
+	free(aux);
 }
 
 /**
@@ -118,7 +118,7 @@ void op_swap(stack_t **stack, unsigned int counter)
 
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't swap, stack too short\n", counter);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}

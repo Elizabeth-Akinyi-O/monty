@@ -46,7 +46,7 @@ void op_add(stack_t **stack, unsigned int counter)
 
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't add, stack too short\n", counter);
+		fprintf(stderr, "L%u: can't add, stack too short\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
@@ -87,7 +87,7 @@ void op_sub(stack_t **stack, unsigned int counter)
 
 	if (i < 2)
 	{
-		dprintf(2, "L%u: can't sub, stack too short\n", counter);
+		fprintf(stderr, "L%u: can't sub, stack too short\n", counter);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
